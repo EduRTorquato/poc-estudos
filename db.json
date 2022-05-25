@@ -1,0 +1,61 @@
+{
+  "escolas": [
+    {
+      "id": 1,
+      "nome": "Escola Estadual",
+      "endereco": "Av. dos idosos, 75",
+      "cnpj": 15154887865,
+      "turma": [
+        {
+          "turmaId": 1,
+          "nome": "Turma leonardo daVinci",
+          "horario": "11:00-12:00"
+        },
+        {
+          "turmaId": 2,
+          "nome": "Turma Michelangelo",
+          "horario": "12:00-13:00"
+        },
+        {
+          "turmaId": 3,
+          "nome": "Turma Rafael",
+          "horario": "9:00-10:00"
+        },
+        {
+          "turmaId": 4,
+          "nome": "Turma Loucos",
+          "horario": "9:00-10:00"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "nome": "Escola Municipal",
+      "endereco": "Av. dos adultos, 85",
+      "cnpj": 15154887865,
+      "turma": [
+        {
+          "turmaId": 4,
+          "nome": "Turma Hopper",
+          "horario": "11:00-12:00"
+        },
+        {
+          "turmaId": 5,
+          "nome": "Turma Portinari",
+          "horario": "12:00-13:00"
+        },
+        {
+          "turmaId": 6,
+          "nome": "Turma Caravaggio",
+          "horario": "09:00-10:00"
+        }
+      ]
+    }
+  ],
+  "turmas":{
+    "turmaId":6,
+    "nome":"Turma Caravaggio",
+    "horario":"11:00-12:00",
+    "escolaId": 3
+  } 
+}

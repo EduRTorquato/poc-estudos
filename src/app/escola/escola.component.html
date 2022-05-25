@@ -1,0 +1,26 @@
+
+<div class="col-6">
+
+<h1>Escolas</h1>
+<p-table [value]="escola">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{'main-table.name' | transloco}}</th>
+            <th>{{'main-table.adress' | transloco}}</th>
+            <th>{{'main-table.class' | transloco}}</th>
+            <th>{{'main-table.name' | transloco}}</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-escolas>
+        <tr>
+            <td>{{escolas.nome}}</td>
+            <td>{{escolas.endereco}}</td>
+            <td>{{escolas.cnpj}}</td>
+            <td>{{escolas.turma.nome}}</td>
+
+        </tr>
+    </ng-template>
+</p-table>
+
+</div>
+
