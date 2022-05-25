@@ -1,26 +1,89 @@
-
 <div class="col-6">
 
-<h1>Escolas</h1>
-<p-table [value]="escola">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>{{'main-table.name' | transloco}}</th>
-            <th>{{'main-table.adress' | transloco}}</th>
-            <th>{{'main-table.class' | transloco}}</th>
-            <th>{{'main-table.name' | transloco}}</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-escolas>
-        <tr>
-            <td>{{escolas.nome}}</td>
-            <td>{{escolas.endereco}}</td>
-            <td>{{escolas.cnpj}}</td>
-            <td>{{escolas.turma.nome}}</td>
+    <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <p-button type="text" (click)="display = true" icon="pi pi-bars"></p-button>
+        </div>
 
-        </tr>
-    </ng-template>
-</p-table>
+        <h1>Escola</h1>
+
+        <div class="p-toolbar-group-right">
+            <p-button icon="pi pi-plus" (click)="showModalDialog()"></p-button>
+
+        </div>
+    </p-toolbar>
+
+    <p-dialog header="Adicionar Escola" [(visible)]="displayModal" [modal]="true" [style]="{width: '30vw'}">
+        <form>
+            <div class="sizes">
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text"  placeholder="Id" pInputText />
+                </div>
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text"  placeholder="Nome" pInputText />
+                </div>
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text" placeholder="Endereço"
+                        pInputText />
+                </div>
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text" placeholder="CNPJ" pInputText />
+                </div>
+            </div>
+        </form>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayModal=false" label="Criar"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <p-table [value]="escola">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>{{'main-table.name' | transloco}}</th>
+                <th>{{'main-table.adress' | transloco}}</th>
+                <th>{{'main-table.cnpj' | transloco}}</th>
+                <th>Id</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <!-- <th>{{'main-table.name' | transloco}}</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-escolas>
+            <tr>
+                <td>{{escolas.nome}}</td>
+                <td>{{escolas.endereco}}</td>
+                <td>{{escolas.cnpj}}</td>
+                <td>{{escolas.id}}</td>
+                <td>
+                    <p-button icon="pi pi-pencil" styleClass="p-button-success"></p-button>
+                </td>
+                <td>
+                    <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+                </td>
+                <!-- <td>{{escolas.turma.nome}}</td> -->
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-sidebar [(visible)]="display" class="grid" [style]="{width:'30em'}">
+        <div class="grid">
+            <h1 class="justify-content: center">Menu</h1>
+            <div style="padding: 10px;">
+                <button style="width: 50%;" class="button" pButton type="button" icon="pi pi-user" routerLink="/turmas"
+                    label="Turmas" class="p-button-primary"></button>
+            </div>
+            <hr>
+            <div style="padding:10px;">
+                <button style="width: 50%;" pButton type="button" icon="pi pi-home" routerLink="/escola" label="Escolas"
+                    class="p-button-primary"></button>
+            </div>
+            <hr>
+            <div style="padding:10px;">
+                <button style="width: 50%;" pButton type="button" icon="pi pi-caret-left" routerLink="/login"
+                    label="Sair" class="p-button-danger"></button>
+            </div>
+        </div>
+    </p-sidebar>
 
 </div>
-

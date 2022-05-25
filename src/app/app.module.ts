@@ -13,14 +13,26 @@ import {TreeNode} from 'primeng/api';
 import {SplitterModule} from 'primeng/splitter';
 import { TurmaComponent } from './turma/turma.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import { LoginComponent } from './login/login.component';
+import {PasswordModule} from 'primeng/password';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {ToolbarModule} from 'primeng/toolbar';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {DialogModule} from 'primeng/dialog';
+import {SidebarModule} from 'primeng/sidebar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EscolaComponent,
     TurmaComponent,
+    LoginComponent
   ],
   imports: [
+    ConfirmDialogModule,
+    DialogModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -30,6 +42,12 @@ import { TranslocoRootModule } from './transloco-root.module';
     HttpClientModule,
     SplitterModule,
     TranslocoRootModule,
+    PasswordModule,
+    InputTextModule,
+    ButtonModule,
+    ToolbarModule,
+    SidebarModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

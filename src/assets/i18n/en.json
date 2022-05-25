@@ -2,6 +2,7 @@
     "main-table": {
         "name": "Name",
         "adress": "Adress",
-        "class": "Classes"
+        "class": "Classes",
+        "cnpj":"Cnpj"
     }
 }

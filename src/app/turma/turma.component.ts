@@ -9,13 +9,24 @@ import { TurmaService } from '../services/turma.service';
 })
 export class TurmaComponent implements OnInit {
 
-  turmas: Turma[]
+  public turmas: Turma[]
+
+  displayModal: boolean
+
+  display: boolean
+
+  turmaEscolaId: any
+  turmaId: any
+  turmaNome: any
+  turmaHorario: any
+
+
 
   constructor(private turmaService: TurmaService) { }
 
   ngOnInit(): void {
     this.turmaService.getTurmas().subscribe(
-      data =>{
+      data => {
         this.turmas = data.map(item =>{
           return new Turma(
             item.escolaId,
@@ -24,8 +35,29 @@ export class TurmaComponent implements OnInit {
             item.horario
           )
         })
+        console.log(this.turmas);
+        
       }
     )
   }
+
+  showModalDialog() {
+    this.displayModal = true;
+}
+
+postTurma(){
+  console.log('entrou');
+  
+  let dados = {
+    turmaId: this.turmaId,
+    nome: this.turmaNome,
+    horario: this.turmaHorario,
+    escolaId: this.turmaEscolaId
+  }
+
+  this.turmaService.postTurma(dados)
+  console.log('teste');
+  
+}
 
 }

@@ -1,1 +1,75 @@
-<p>turma works!</p>
+<div class="col-6">
+
+    <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <p-button type="text" (click)="display = true" icon="pi pi-bars"></p-button>
+        </div>
+
+        <h1>Turmas</h1>
+
+        <div class="p-toolbar-group-right">
+            <p-button icon="pi pi-plus" (click)="showModalDialog()"></p-button>
+            <p-button icon="pi pi-pencil" styleClass="p-button-success"></p-button>
+            <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+        </div>
+    </p-toolbar>
+
+    <p-dialog header="Adicionar Turma" [(visible)]="displayModal" [modal]="true" [style]="{width: '30vw'}">
+        <form>
+            <div class="sizes" >
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text" [(ngModel)]="turmaId"  placeholder="ID" [ngModelOptions]="{standalone: true}" pInputText />
+                </div>
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text" placeholder="Nome" [(ngModel)]="turmaNome" [ngModelOptions]="{standalone: true}"   pInputText />
+                </div>
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text" placeholder="Horário" [(ngModel)]="turmaHorario" [ngModelOptions]="{standalone: true}" pInputText />
+                </div>
+                <div style="padding:10px;">
+                    <input style="width: 100%;" type="text" placeholder="Escola" [(ngModel)]="turmaEscolaId" [ngModelOptions]="{standalone: true}" pInputText />
+                </div>
+            </div>
+        </form>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayModal=false" (click)="postTurma()" label="Criar"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <p-table [value]="turmas">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Horário</th>
+                <th>Escola</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-turmas>
+            <tr>
+                <td>{{turmas.nome}}</td>
+                <td>{{turmas.horario}}</td>
+                <td>{{turmas.escolaId}}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-sidebar [(visible)]="display" [style]="{width:'30em'}">
+        <div class="grid">
+            <h1 class="justify-content: center">Menu</h1>
+            <div  style="padding: 10px;">
+                <button pButton type="button" icon="pi pi-user" routerLink="/turmas" label="Turmas"
+                    class="p-button-primary"></button>
+            </div>
+            <div  style="padding:10px;">
+                <button pButton type="button" icon="pi pi-home" routerLink="/escola" label="Escolas"
+                    class="p-button-primary"></button>
+            </div>
+            <div  style="padding:10px;">
+                <button pButton type="button" icon="pi pi-caret-left" routerLink="/login" label="Sair"
+                    class="p-button-danger"></button>
+            </div>
+        </div>
+    </p-sidebar>
+
+</div>

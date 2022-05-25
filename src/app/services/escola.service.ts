@@ -9,10 +9,13 @@ import { Escola } from 'src/models/escola';
 export class EscolaService {
 
   constructor(private _httpclient: HttpClient) { }
-
   private url = "http://localhost:3000/escolas"
 
   getEscola(): Observable<Escola[]>{
     return this._httpclient.get<Escola[]>(this.url)
+  }
+
+  postEscola(escola: Escola){
+    return this._httpclient.post(this.url, escola)
   }
 }

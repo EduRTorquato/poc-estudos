@@ -8,10 +8,23 @@ import { EscolaService } from '../services/escola.service';
   styleUrls: ['./escola.component.css']
 })
 export class EscolaComponent implements OnInit {
-
-  constructor(private escolaService: EscolaService) { }
   
   public escola: Escola[]
+
+  displayModal: boolean;
+
+  display: boolean;
+
+  // idEscola: number
+  // nomeEscola: string
+  // enderecoEscola: string
+  // cnpjEscola: number
+  // turmaId: number
+  // nomeTurma: string
+  // horarioTurma: string
+
+
+  constructor(private escolaService: EscolaService) { }
 
   ngOnInit(): void {
     this.escolaService.getEscola().subscribe(
@@ -23,12 +36,34 @@ export class EscolaComponent implements OnInit {
             item.endereco,
             item.cnpj,
             item.turma
-          )          
+          )
         })
         console.log(this.escola);
-        
+
       }
     )
   }
+
+  showModalDialog() {
+    this.displayModal = true;
+  }
+
+  // postEscola(){
+
+  //   let dados = {
+  //     id : 1,
+  //     nome: 'Escola eduardo',
+  //     cnpj: '4845848648',
+  //     endereco: 'Rua endereco, 89',
+  //     turma: [ {
+  //       turmaId: 1,
+  //       nome: "Turma leonardo daVinci",
+  //       horario: "11:00-12:00",
+  //       escolaId: 4
+  //     }]
+  //   }
+
+  //   this.escolaService.postEscola(dados);
+  // }
 
 }

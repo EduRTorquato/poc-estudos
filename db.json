@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": 1,
+      "id": 2,
       "nome": "Escola Municipal",
       "endereco": "Av. dos adultos, 85",
       "cnpj": 15154887865,
@@ -50,12 +50,27 @@
           "horario": "09:00-10:00"
         }
       ]
+    },
+    {
+      "id": 5,
+      "nome": "Escola Municipal do Mucuri",
+      "endereco": "Av. dos pardais, 75",
+      "cnpj": 465456456,
+      "turma": [
+        {
+          "turmaId": 1,
+          "nome": "Turma leonardo daVinci",
+          "horario": "11:00-12:00"
+        }
+      ]
     }
   ],
-  "turmas":{
-    "turmaId":6,
-    "nome":"Turma Caravaggio",
-    "horario":"11:00-12:00",
-    "escolaId": 3
-  } 
+  "turmas": [
+    {
+      "turmaId": 6,
+      "nome": "Turma Caravaggio",
+      "horario": "11:00-12:00",
+      "escolaId": 3
+    }
+  ]
 }
