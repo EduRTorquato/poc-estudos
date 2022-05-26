@@ -36,7 +36,7 @@ export class EscolaComponent implements OnInit {
     this.escolaForm = new FormGroup({
       nome: new FormControl((''), [Validators.required]),
       endereco: new FormControl((''), [Validators.required]),
-      cnpj: new FormControl((''), [Validators.required]),
+      cnpj: new FormControl((''), [Validators.required, Validators.maxLength(9)]),
       turma: new FormControl((''), [Validators.required]),
       id: new FormControl((''))
     })
