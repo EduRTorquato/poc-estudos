@@ -16,17 +16,21 @@ export class LoginComponent implements OnInit {
 
   login: FormGroup;
 
+  logged: boolean
+
   ngOnInit(): void {
     this.login = new FormGroup({
       username: new FormControl((''), [Validators.required, Validators.maxLength(20)]),
       password: new FormControl((''), [Validators.required, Validators.maxLength(10)]),
     })
+
+    this.logged = true
   }
 
   
 
   validate(){
-
+    this.logged = false
     this.login.reset();
     this.routes.navigate(['escola']); 
   }
