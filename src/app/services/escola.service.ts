@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Escola } from 'src/models/escola';
 
 @Injectable({
@@ -12,10 +12,19 @@ export class EscolaService {
   private url = "http://localhost:3000/escolas"
 
   getEscola(): Observable<Escola[]>{
-    return this._httpclient.get<Escola[]>(this.url)
+    return this._httpclient.get<Escola[]>(`${this.url}`)
   }
 
-  postEscola(escola: Escola){
-    return this._httpclient.post(this.url, escola)
+  postEscola(escola: Escola): Observable<Escola>{
+    return this._httpclient.post<Escola>(`${this.url}`, escola);
   }
+
+  putEscola(escola: Escola): Observable<Escola>{
+    return this._httpclient.put<Escola>(`${this.url}/${escola.id}`, escola);
+  }
+
+  deleteEscola(escola: Escola): Observable<Escola>{
+    return this._httpclient.delete<Escola>(`${this.url}/${escola.id}`);
+  }
+
 }

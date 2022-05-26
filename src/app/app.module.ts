@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
 import {SidebarModule} from 'primeng/sidebar';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -46,7 +47,10 @@ import {SidebarModule} from 'primeng/sidebar';
     InputTextModule,
     ButtonModule,
     ToolbarModule,
-    SidebarModule
+    SidebarModule,
+    ReactiveFormsModule,
+    DropdownModule
+    
     
   ],
   providers: [],
