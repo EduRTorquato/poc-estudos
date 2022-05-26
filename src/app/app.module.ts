@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { EscolaComponent } from './escola/escola.component';
 import {TreeTableModule} from 'primeng/treetable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {TreeNode} from 'primeng/api';
 import {SplitterModule} from 'primeng/splitter';
 import { TurmaComponent } from './turma/turma.component';
 import { TranslocoRootModule } from './transloco-root.module';
@@ -22,6 +21,14 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
 import {SidebarModule} from 'primeng/sidebar';
 import {DropdownModule} from 'primeng/dropdown';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
+import { MessageService } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
+import {MultiSelectModule} from 'primeng/multiselect';
+
 
 
 @NgModule({
@@ -49,11 +56,15 @@ import {DropdownModule} from 'primeng/dropdown';
     ToolbarModule,
     SidebarModule,
     ReactiveFormsModule,
-    DropdownModule
-    
-    
+    DropdownModule,
+    MessageModule,
+    MessagesModule,
+    ToastModule,
+    RippleModule,
+    ConfirmDialogModule,
+    MultiSelectModule
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

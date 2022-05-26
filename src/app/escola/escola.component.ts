@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { TRISTATECHECKBOX_VALUE_ACCESSOR } from 'primeng/tristatecheckbox';
 import { Escola } from 'src/models/escola';
 import { Turma } from 'src/models/turma';
@@ -15,14 +16,17 @@ export class EscolaComponent implements OnInit {
 
   public escola: Escola[]
   public turma: Turma[]
-  public displayModal: boolean;
-  public display: boolean;
   public escolaForm: FormGroup
 
-  isEdit: boolean;
-  isView: boolean;
+  public displayModal: boolean;
+  public display: boolean;
+  public isEdit: boolean;
+  public isView: boolean;
 
-  constructor(private escolaService: EscolaService, private turmaService: TurmaService) { }
+  constructor(private escolaService: EscolaService,
+    private turmaService: TurmaService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
 
@@ -38,42 +42,23 @@ export class EscolaComponent implements OnInit {
     })
   }
 
-  getEscola() {
-    this.escolaService.getEscola().subscribe(
-      data => {
-        this.escola = data;
-        console.log(this.escola);
-      }
-    )
-  }
-
-  getTurmas() {
-    this.turmaService.getTurmas().subscribe(
-      data => {
-        this.turma = data
-        console.log(data);
-      }
-    )
-  }
-
   showModalDialog() {
     this.isEdit = false;
-    this.isView =false;
+    this.isView = false;
     this.displayModal = true;
     this.escolaForm.enable();
     this.escolaForm.reset();
   }
 
 
-  editForm(data: Escola){
+  editForm(data: Escola) {
     this.isEdit = true;
     this.isView = false;
-    console.log(data);
     this.displayModal = true
     this.escolaForm.setValue(data);
   }
 
-  watchSchool(data: Escola){
+  watchSchool(data: Escola) {
     this.isView = true;
     this.displayModal = true;
     this.escolaForm.setValue(data)
@@ -83,9 +68,10 @@ export class EscolaComponent implements OnInit {
   postEscola() {
     this.escolaService.postEscola(this.escolaForm.value).subscribe(
       data => {
-        console.log(data);
         this.escolaForm.reset();
         this.getEscola();
+        this.messageService.add({ severity: 'success', summary: 'Feito', detail: 'Escola adicionada a lista!' });
+        this.displayModal = false
       }
     )
   }
@@ -96,18 +82,44 @@ export class EscolaComponent implements OnInit {
     this.escolaService.putEscola(this.escolaForm.value).subscribe(
       data => {
         this.escolaForm.reset();
+        this.messageService.add({ severity: 'success', summary: 'Feito', detail: 'Escola Editada!' });
         this.displayModal = false;
         this.getEscola();
       }
     )
   }
 
-  deleteEscola(data: Escola){
-    this.escolaService.deleteEscola(data).subscribe(
+  deleteEscola(data: Escola) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir a escola da lista?',
+      accept: () => {
+        this.escolaService.deleteEscola(data).subscribe(
+          data => {
+            this.messageService.add({ severity: 'warn', summary: 'Feito', detail: 'Escola Deletda' });
+            this.getEscola();
+          }
+        )
+      }
+    })
+  }
+
+  getTurmas() {
+    this.turmaService.getTurmas().subscribe(
       data => {
-        this.getEscola();
+        this.turma = data
       }
     )
   }
+
+    getEscola() {
+    this.escolaService.getEscola().subscribe(
+      data => {
+        this.escola = data;
+      }
+    )
+  }
+
+
+
 
 }

@@ -1,27 +1,33 @@
 <body>
-    
 
-<div class="container">
-<div class="box">
-<h5 class="center-text">Login</h5>
 
-<div [formGroup]="login">
-        
-    <div class="username">
-        <input placeholder="usuario" formControlName="username" type="text" class="input" pInputText />
-    </div>
-    
-    <div class="password">
-        <p-password class="padding-top: 10" formControlName="password" placeholder="senha" [toggleMask]="true" [feedback]="false"></p-password>
-    </div>
-    
-    <div class="button">
-        <p-button [disabled]="login.invalid" (click)="validate()">TEST</p-button>
-    </div>
-    <!-- <p>Form Status: {{ login.status }}</p>
+    <div class="container">
+        <div class="box">
+            <div class="justify-content-center">
+                <h5 class="text-center">Login</h5>
+            </div>
+
+            <div [formGroup]="login">
+
+                <div class="username">
+                    <input placeholder="usuario" formControlName="username" type="text" class="input" pInputText />
+                </div>
+
+                <div class="password">
+                    <p-password class="padding-top: 10" formControlName="password" placeholder="senha"
+                        [toggleMask]="true" [feedback]="false"></p-password>
+                </div>
+
+                <div class="button">
+                    <p-button styleClass="width: 100%;" [disabled]="login.invalid" (click)="validate()">Login</p-button>
+
+                </div>
+
+                <!-- <p>Form Status: {{ login.status }}</p>
     <p>Form value: {{ login.value | json }}</p> -->
-</div>
-</div>
-</div>
+            </div>
+
+        </div>
+    </div>
 
 </body>

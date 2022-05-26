@@ -5,50 +5,58 @@
             <p-button type="text" (click)="display = true" icon="pi pi-bars"></p-button>
         </div>
 
-        <h1>Turmas</h1>
+        <h1>{{'classes.classes' | transloco}}</h1>
 
         <div class="p-toolbar-group-right">
-            <p-button icon="pi pi-plus" (click)="showModalDialog()"></p-button>
-            <p-button icon="pi pi-pencil" styleClass="p-button-success"></p-button>
-            <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+            <div class="p-toolbar-group-right">
+                <p-button icon="pi pi-plus" (click)="showModalDialog()"></p-button>
+            </div>
         </div>
     </p-toolbar>
 
-    <p-dialog header="Adicionar Turma" [(visible)]="displayModal" [modal]="true" [style]="{width: '30vw'}">
-        <form>
+    <p-dialog header="{{ !isEdit && !isWatch ? 'Criar' : !isEdit && isWatch ? 'Ver' : 'Editar'}} " [(visible)]="displayModal" [modal]="true" [style]="{width: '30vw'}">
+        <form [formGroup]="turmaForm">
             <div class="sizes" >
                 <div style="padding:10px;">
-                    <input style="width: 100%;" type="text" [(ngModel)]="turmaId"  placeholder="ID" [ngModelOptions]="{standalone: true}" pInputText />
+                    <input style="width: 100%;" formControlName="nome" type="text"  placeholder="{{'classes.name' | transloco}}"  pInputText />
                 </div>
                 <div style="padding:10px;">
-                    <input style="width: 100%;" type="text" placeholder="Nome" [(ngModel)]="turmaNome" [ngModelOptions]="{standalone: true}"   pInputText />
-                </div>
-                <div style="padding:10px;">
-                    <input style="width: 100%;" type="text" placeholder="Horário" [(ngModel)]="turmaHorario" [ngModelOptions]="{standalone: true}" pInputText />
-                </div>
-                <div style="padding:10px;">
-                    <input style="width: 100%;" type="text" placeholder="Escola" [(ngModel)]="turmaEscolaId" [ngModelOptions]="{standalone: true}" pInputText />
+                    <input style="width: 100%;" formControlName="horario" type="text" placeholder="{{'classes.schedulle' | transloco}}"    pInputText />
                 </div>
             </div>
         </form>
         <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="displayModal=false" (click)="postTurma()" label="Criar"></p-button>
+            <p-button icon="pi pi-check" *ngIf="!isEdit && !isWatch" [disabled]="turmaForm.invalid" (click)="postTurma()" label="{{'classes.classes-buttons.create' | transloco}}"></p-button>
+
+            <p-button icon="pi pi-check" *ngIf="isEdit" [disabled]="turmaForm.invalid"(click)="editTurma()" label="{{'classes.classes-buttons.edit' | transloco}}"></p-button>
         </ng-template>
     </p-dialog>
+    <p-toast position="top-right"></p-toast>
+    <p-confirmDialog header="{{'classes.confirmation' | transloco}}" rejectButtonStyleClass="p-button-danger" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
     <p-table [value]="turmas">
         <ng-template pTemplate="header">
             <tr>
-                <th>Nome</th>
-                <th>Horário</th>
-                <th>Escola</th>
+                <th>{{'classes.name' | transloco}}</th>
+                <th>{{'classes.schedulle' | transloco}}</th>
+                <th>{{'school.watch' | transloco}}</th>
+                <th>{{'school.edit' | transloco}}</th>
+                <th>{{'school.delete' | transloco}}</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-turmas>
             <tr>
                 <td>{{turmas.nome}}</td>
                 <td>{{turmas.horario}}</td>
-                <td>{{turmas.escolaId}}</td>
+                <td>
+                    <p-button icon="pi pi-eye" (click)="watchTurmaForm(turmas)" styleClass="p-button-primary"></p-button>
+                </td>
+                <td>
+                    <p-button icon="pi pi-pencil" (click)="editTurmaForm(turmas)" styleClass="p-button-success"></p-button>
+                </td>
+                <td>
+                    <p-button icon="pi pi-times" (click)="deleteTurma(turmas)" styleClass="p-button-danger"></p-button>
+                </td>
 
             </tr>
         </ng-template>
@@ -56,20 +64,24 @@
 
     <p-sidebar [(visible)]="display" [style]="{width:'30em'}">
         <div class="grid">
-            <h1 class="justify-content: center">Menu</h1>
-            <div  style="padding: 10px;">
-                <button pButton type="button" icon="pi pi-user" routerLink="/turmas" label="Turmas"
+            <h1 class="justify-content: center">{{'menu.menu' | transloco}}</h1>
+            <div style="padding: 10px;">
+                <button style="width: 50%;" class="button" pButton type="button" icon="pi pi-user" routerLink="/turmas"
+                    label="{{'menu.classes' | transloco}}" class="p-button-primary"></button>
+            </div>
+            <hr>
+            <div style="padding:10px;">
+                <button style="width: 50%;" pButton type="button" icon="pi pi-home" routerLink="/escola" label="{{'menu.school' | transloco}}"
                     class="p-button-primary"></button>
             </div>
-            <div  style="padding:10px;">
-                <button pButton type="button" icon="pi pi-home" routerLink="/escola" label="Escolas"
-                    class="p-button-primary"></button>
-            </div>
-            <div  style="padding:10px;">
-                <button pButton type="button" icon="pi pi-caret-left" routerLink="/login" label="Sair"
-                    class="p-button-danger"></button>
+            <hr>
+            <div style="padding:10px;">
+                <button style="width: 50%;" pButton type="button" icon="pi pi-caret-left" (click)="sair()"
+                    label="{{'menu.logout' | transloco}}" class="p-button-danger"></button>
             </div>
         </div>
+        <p-confirmDialog header="{{'classes.confirmation' | transloco}}" rejectButtonStyleClass="p-button-danger" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle"></p-confirmDialog>
     </p-sidebar>
+
 
 </div>

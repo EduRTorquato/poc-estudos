@@ -1,6 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
 
   constructor(private routes: Router) { }
 
@@ -23,9 +26,10 @@ export class LoginComponent implements OnInit {
   
 
   validate(){
-    this.login.reset();
-    this.routes.navigate(['escola']);
 
+    this.login.reset();
+    this.routes.navigate(['escola']); 
   }
 
+  
 }

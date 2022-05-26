@@ -1,17 +1,4 @@
 {
   "escolas": [],
-  "turmas": [
-    {
-      "turmaId": 6,
-      "nome": "Turma Caravaggio",
-      "horario": "11:00-12:00",
-      "escolaId": 3
-    },
-    {
-      "turmaId": 7,
-      "nome": "Turma Teste",
-      "horario": "11:00-12:00",
-      "escolaId": 4
-    }
-  ]
+  "turmas": []
 }

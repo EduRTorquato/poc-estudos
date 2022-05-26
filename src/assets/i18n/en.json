@@ -1,8 +1,0 @@
-{
-    "main-table": {
-        "name": "Name",
-        "adress": "Adress",
-        "class": "Classes",
-        "cnpj":"Cnpj"
-    }
-}

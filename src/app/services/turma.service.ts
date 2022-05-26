@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Escola } from 'src/models/escola';
 import { Turma } from 'src/models/turma';
 
 @Injectable({
@@ -16,8 +17,16 @@ export class TurmaService {
     return this._httpclient.get<Turma[]>(this.url)
   }
 
-  postTurma(turma: Turma){
-    return this._httpclient.post(this.url, turma);    
+  postTurma(turma: Turma): Observable<Turma>{
+    return this._httpclient.post<Turma>(`${this.url}`, turma);    
+  }
+
+  putTurma(turma: Turma): Observable<Turma>{
+    return this._httpclient.put<Turma>(`${this.url}/${turma.id}`, turma )
+  }
+
+  deleteTurma(turma: Turma): Observable<Turma>{
+    return this._httpclient.delete<Turma>(`${this.url}/${turma.id}`)
   }
 
 }

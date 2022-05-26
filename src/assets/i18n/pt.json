@@ -1,0 +1,40 @@
+{
+    "school": {
+        "school": "Escola",
+        "classes": "Turmas",
+        "name": "Nome",
+        "adress": "Endereço",
+        "cnpj": "CNPJ",
+            "school-buttons": {
+                "create": "Criar",
+                "edit": "Editar"
+        },
+        "watch": "Ver",
+        "edit":"Editar",
+        "delete": "Apagar",
+        "confirmation":"Confirmação",
+        "yes": "Sim",
+        "no": "Não",
+        "sure": "Tem certeza que deseja remover a escola da lista?"
+    },
+   "classes":{
+       "classes": "Turmas",
+       "name": "Nome",
+       "schedulle": "Horários",
+       "classes-buttons":{
+            "create": "Criar",
+            "edit": "Editar"
+       },
+       "confirmation":"Confirmação",
+       "yes": "Sim",
+       "no": "Não",
+       "sure": "Tem certeza que deseja remover a turma da lista?"
+   },
+
+   "menu":{
+       "menu": "Menu",
+       "classes": "Turmas",
+       "school": "Escolas",
+       "logout": "Sair"
+   }
+}
